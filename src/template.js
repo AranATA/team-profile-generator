@@ -6,9 +6,9 @@ const Manager = require('../lib/Manager');
 const Engineer = require('../lib/Engineer');
 const Intern = require('../lib/Intern');
 
+// every element to be stored in the teamList array will be a class generated object with all the properties and methods they inherit from it  
 let teamList = [];
 console.log(teamList);
-
 
 // team manager
 function addManager() {
@@ -36,14 +36,18 @@ function addManager() {
       },
     ])
 
+// ALT1: longer way of doing things: assigning variables to properties
     .then(function (data) {
+
       const empName = data.empName;
       const id = data.id;
       const email = data.email;
       const officeNumber = data.officeNumber;
+      
       const teamMember = new Manager(empName, id, email, officeNumber);
       teamList.push(teamMember)
       teamStatusCheck();
+
     });
 }
 
@@ -102,14 +106,13 @@ function addEngineer() {
       },
     ])
 
+// ALT2: taking advantage of the predefined class properties: 
     .then(function (data) {
-      const empName = data.empName;
-      const id = data.id;
-      const email = data.email;
-      const githubUsername = data.githubUsername;
-      const teamMember = new Engineer(empName, id, email, githubUsername);
+
+      const teamMember = new Engineer(data.empName, data.id, data.email, data.githubUsername);
       teamList.push(teamMember)
       teamStatusCheck();
+
     });
 }
 
@@ -138,22 +141,20 @@ function addIntern() {
       },
     ])
 
+// ALT3: with the object deconstructing syntax:     
     .then(function (data) {
-      const empName = data.empName;
-      const id = data.id;
-      const email = data.email;
-      const school = data.school;
+
+      const {empName, id, email, school} = data
       const teamMember = new Intern(empName, id, email, school);
       teamList.push(teamMember)
       teamStatusCheck();
+
     });
 }
 
 function callTeam() {
   console.log("Let's call your team!")
-
-  const htmlStringSet = []
-  const htmlStringOne = `
+  const htmlString = `
 <!DOCTYPE html>
 <html lang="en">
 
@@ -177,59 +178,67 @@ function callTeam() {
   </header>
   <main>
     <section class="row">
-`
-  
-htmlStringSet.push(htmlStringOne);
-
-  for (let i = 0; i < teamList.length; i++) {
-    let htmlStringTwo = `
-     <div class="member-card">
-      <div class="card-top">
-        <h2>${teamList[i].empName}</h2>
-        <h2>${teamList[i].title}</h2>
-      </div>
-      <div class="card-bottom">
-              <p>Employee ID: ${teamList[i].id}</p>
-              <p>Email: <a href="mailto:${teamList[i].email}">${teamList[i].email}</a></p>
-      `
-    if (teamList[i].officeNumber) {
-      htmlStringTwo += `
-        <p>Office number: ${teamList[i].officeNumber}</p>
-        `
-    }
-    if (teamList[i].github) {
-      htmlStringTwo += `
-        <p>GitHub: <a href="https://github.com/${teamList[i].github}">${teamList[i].github}</a></p>
-        `
-    }
-    if (teamList[i].school) {
-      htmlStringTwo += `
-        <p>School: ${teamList[i].school}</p>
-        `
-    }
-
-    htmlStringTwo += `
-      </div>
-     </div>
-    `
-    htmlStringSet.push(htmlStringTwo);
-  }
-
-  const htmlStringThree = `
-      </section>
+      ${card()}
+    </section>
     </main>
   </body>
   </html>
-  `
-  htmlStringSet.push(htmlStringThree);
-
-
+`
   fs.writeFile(
-    path.join(__dirname,"../dist","myteam.html"), htmlStringSet.join(""),
+    path.join(__dirname,"../dist","myteam.html"), htmlString,
     err => {
       if(err) throw err;
       console.log("Successfully created your file in the dist folder!")
   })
 }
 
-addManager()
+const card = () => {
+
+  const htmlStringSet = [];
+
+  for (let i = 0; i < teamList.length; i++) {
+    let htmlStringTwo = `
+    <div class="member-card">
+      <div class="card-top">
+        <h2>${teamList[i].getEmpName()}</h2>
+        <h2>${teamList[i].getRole()}</h2>
+      </div>
+      <div class="card-bottom">
+              <p>Employee ID: ${teamList[i].getId()}</p>
+              <p>Email: <a href="mailto:${teamList[i].getEmail()}">${teamList[i].getEmail()}</a></p>
+      `
+    if (teamList[i].officeNumber) {
+      htmlStringTwo += `
+        <p>Office number: ${teamList[i].getOfficeNumber()}</p>
+        `
+    }
+    if (teamList[i].github) {
+      htmlStringTwo += `
+        <p>GitHub: <a href="https://github.com/${teamList[i].getGithub()}">${teamList[i].getGithub()}</a></p>
+        `
+    }
+    if (teamList[i].school) {
+      htmlStringTwo += `
+        <p>School: ${teamList[i].getSchool()}</p>
+        `
+    }
+
+    htmlStringTwo += `
+      </div>
+    </div>
+    `
+    htmlStringSet.push(htmlStringTwo);
+  }
+
+  const html = htmlStringSet.join("");
+  return html;
+}
+
+// addManager()
+
+const generateTeamProfile = {
+  message: function() {console.log("Please answer the following questions:")},
+  init: function() {addManager()} 
+};
+
+module.exports = generateTeamProfile;

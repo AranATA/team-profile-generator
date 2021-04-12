@@ -1,5 +1,8 @@
-// const generateTeamProfile = require("./src/template");
+const template = require("./src/template");
+template.message();
+template.init();
 
 
-// addManager();
+
+
 
