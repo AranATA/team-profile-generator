@@ -1,4 +1,4 @@
-const Employee = require("./lib/Employee");
+const Employee = require("../lib/Employee");
 
 describe("Employee", () => {
   it("should instantiate Employee instances", () => {
@@ -34,27 +34,27 @@ describe("Employee", () => {
 describe("getEmpName", () => {
   it("should return the value of the empName property", () => {
     const obj = new Employee("Ali", 44, "ali@gmail.com");
-    expect(obj.getEmpName).toBe(obj.name);
+    expect(obj.getEmpName()).toBe(obj.empName);
   });
 });
 
 describe("getId", () => {
   it("should return the value of the id property", () => {
     const obj = new Employee("Ali", 44, "ali@gmail.com");
-    expect(obj.getId).toBe(obj.id);
+    expect(obj.getId()).toBe(obj.id);
   });
 }); 
 
 describe("getEmail", () => {
   it("should return the value of the email property", () => {
     const obj = new Employee("Ali", 44, "ali@gmail.com");
-    expect(obj.getEmail).toBe(obj.email);
+    expect(obj.getEmail()).toBe(obj.email);
   });
 });
 
 describe("getRole", () => {
   it("should return the set value for the getRole method in the Employee class", () => {
     const obj = new Employee("Ali", 44, "ali@gmail.com");
-    expect(obj.getRole).toBe("Employee");
+    expect(obj.getRole()).toEqual("Employee");
   });
 }); 

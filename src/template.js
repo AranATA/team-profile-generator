@@ -177,12 +177,13 @@ function callTeam() {
     <h1>Team Members Profile</h1>
   </header>
   <main>
-    <section class="row">
-      ${card()}
-    </section>
-    </main>
-  </body>
-  </html>
+   <section class="row">
+    ${card()}
+   </section>
+  </main>
+</body>
+
+</html>
 `
   fs.writeFile(
     path.join(__dirname,"../dist","myteam.html"), htmlString,
@@ -198,14 +199,14 @@ const card = () => {
 
   for (let i = 0; i < teamList.length; i++) {
     let htmlStringTwo = `
-    <div class="member-card">
-      <div class="card-top">
+    <div class="member">
+      <div>
         <h2>${teamList[i].getEmpName()}</h2>
-        <h2>${teamList[i].getRole()}</h2>
+        <h3>"${teamList[i].getRole()}"</h3>
       </div>
-      <div class="card-bottom">
-              <p>Employee ID: ${teamList[i].getId()}</p>
-              <p>Email: <a href="mailto:${teamList[i].getEmail()}">${teamList[i].getEmail()}</a></p>
+      <div>
+        <p>Employee ID: ${teamList[i].getId()}</p>
+        <p>Email: <a href="mailto:${teamList[i].getEmail()}">${teamList[i].getEmail()}</a></p>
       `
     if (teamList[i].officeNumber) {
       htmlStringTwo += `
@@ -233,8 +234,6 @@ const card = () => {
   const html = htmlStringSet.join("");
   return html;
 }
-
-// addManager()
 
 const generateTeamProfile = {
   message: function() {console.log("Please answer the following questions:")},

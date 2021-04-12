@@ -1,4 +1,4 @@
-const Manager = require("./lib Manager");
+const Manager = require("../lib/Manager");
 
 describe("Manager", () => {
   it("should instantiate Manager instances", () => {
@@ -18,13 +18,13 @@ describe("Manager", () => {
 describe("getOfficeNumber", () => {
   it("should return the value of the officeNumber property", () => {
     const obj = new Manager("Ali", 44, "ali@gmail.com", 9197654321);
-    expect(obj.getOfficeNumber).toBe(obj.officeNumber);
+    expect(obj.getOfficeNumber()).toBe(obj.officeNumber);
   });
 });
 
 describe("getRole", () => {
   it("should return the set value for the getRole method in the Manager class ", () => {
     const obj = new Manager("Ali", 44, "ali@gmail.com", 9197654321);
-    expect(obj.getRole).toBe("Manager");
+    expect(obj.getRole()).toBe("Manager");
   });
 });

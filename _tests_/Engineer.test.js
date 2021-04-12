@@ -1,4 +1,4 @@
-const Engineer = require("./lib/Engineer");
+const Engineer = require("../lib/Engineer");
 
 describe("Engineer", () => {
   it("should instantiate Engineer instances", () => {
@@ -18,13 +18,13 @@ describe("Engineer", () => {
 describe("getGithub", () => {
   it("should return the value of the github property", () => {
     const obj = new Engineer("Ali", 44, "ali@gmail.com", "ata");
-    expect(obj.getGithub).toBe(obj.github);
+    expect(obj.getGithub()).toBe(obj.github);
   });
 });
 
 describe("getRole", () => {
   it("should return the set value for the getRole method in the Engineer class", () => {
     const obj = new Engineer("Ali", 44, "ali@gmail.com", "ata");
-    expect(obj.getRole).toBe("Engineer");
+    expect(obj.getRole()).toBe("Engineer");
   });
 });
