@@ -37,23 +37,31 @@ The codebase achieves the following criteria:<br>
 Under the link below you will find a walkthrough video that demonstrates; how a user would invoke the application from the command line, how a user would enter responses to all of the prompts in the application and generates an HTML file that matches the user input and has functioning links.<br>
 If the video appears out of focus please hit the space bar twice.
 
-[https://drive.google.com/file/d/1tsZAYGVHpuPjQm7ea4EmjiG5606DC-g-/view](https://drive.google.com/file/d/1tsZAYGVHpuPjQm7ea4EmjiG5606DC-g-/view)
+[https://drive.google.com/file/d/1R_f3fNE6XvADJ-OV4wGsR3qmg_w4hl6t/view](https://drive.google.com/file/d/1R_f3fNE6XvADJ-OV4wGsR3qmg_w4hl6t/view)
 
 <br>
 <br>
 
-A screenshot that shows the terminal with all the prompts:<br>
+A screenshot that shows the test results:<br>
 <br>
 
-![alt text](generatedREADME/assets/images/scrshot-terminal.png)
+![alt text](dist/images/test-results.png)
 
 <br>
 <br>
 
-A screenshot that shows the full generated HTML file:<br>
+A screenshot that shows all questions answered:<br>
 <br>
 
-![alt text](generatedREADME/assets/images/scrshot-generatedREADME.png)
+![alt text](dist/images/answers.png)
+
+<br>
+<br>
+
+A screenshot that shows the full generated web page:<br>
+<br>
+
+![alt text](dist/images/scrshot-teamprofilegenerator.png)
 
 <br>
 <br>
