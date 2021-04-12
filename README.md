@@ -61,7 +61,7 @@ A screenshot that shows all questions answered:<br>
 A screenshot that shows the full generated web page:<br>
 <br>
 
-![alt text](dist/images/scrshot-teamprofilegenerator.png)
+![alt text](dist/images/scrshot-team-profile-generator.png)
 
 <br>
 <br>
